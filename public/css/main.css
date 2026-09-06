@@ -1,0 +1,461 @@
+/* =============================================================
+   CSE 340 Service Network - main stylesheet
+
+   Sections
+   1. Design tokens
+   2. Reset and base elements
+   3. Accessibility helpers
+   4. Masthead and navigation
+   5. Page shell and headings
+   6. Home page
+   7. Organizations directory
+   8. Projects list
+   9. Categories grid
+   10. Footer
+   11. Motion preferences
+   ============================================================= */
+
+/* ---------------------------------------------- 1. Design tokens */
+:root {
+    /* Colour palette: evergreen structure, marigold accent, pale field
+       background. Every text/background pair below passes WCAG AA. */
+    --pine: #14392b;
+    --fern: #2f6b4f;
+    --marigold: #e9a227;
+    --field: #eaf0eb;
+    --paper: #ffffff;
+    --ink: #17251e;
+    --stone: #4d5c53;
+    --line: #cfdcd3;
+    --pine-soft: #cfdfd5;
+
+    /* Type */
+    --font-display: "Lora", Georgia, "Times New Roman", serif;
+    --font-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+    /* Layout */
+    --shell: 72rem;
+    --measure: 62ch;
+    --gutter: 1.25rem;
+    --radius: 6px;
+}
+
+/* ---------------------------------------- 2. Reset and base elements */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--field);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    color: var(--pine);
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--fern);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--pine);
+}
+
+:focus-visible {
+    outline: 3px solid var(--fern);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* --------------------------------------- 3. Accessibility helpers */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10;
+    background-color: var(--paper);
+    color: var(--pine);
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    left: 0.5rem;
+    top: 0.5rem;
+}
+
+/* ------------------------------------ 4. Masthead and navigation */
+.masthead {
+    background-color: var(--pine);
+    color: var(--paper);
+}
+
+.masthead__inner {
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding: 1.25rem var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.masthead :focus-visible {
+    outline-color: var(--marigold);
+}
+
+.wordmark {
+    width: max-content;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--paper);
+    text-decoration: none;
+}
+
+.wordmark:hover {
+    color: var(--paper);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-color: var(--marigold);
+    text-decoration-thickness: 3px;
+}
+
+.site-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+}
+
+.site-nav__link {
+    display: inline-block;
+    padding: 0.35rem 0;
+    color: var(--pine-soft);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 120ms ease, border-color 120ms ease;
+}
+
+.site-nav__link:hover {
+    color: var(--paper);
+    border-bottom-color: rgba(233, 162, 39, 0.55);
+}
+
+.site-nav__link--current {
+    color: var(--paper);
+    border-bottom-color: var(--marigold);
+}
+
+@media (min-width: 46em) {
+    .masthead__inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-block: 1.5rem;
+    }
+
+    .site-nav ul {
+        gap: 2rem;
+    }
+}
+
+/* --------------------------------- 5. Page shell and headings */
+main {
+    flex: 1;
+}
+
+.page {
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding: 2.5rem var(--gutter) 4rem;
+}
+
+.page__title {
+    font-size: clamp(2rem, 1.35rem + 2.6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+/* The short marigold rule under a page title is the one recurring
+   accent on the site; it also appears under the logo wordmark. */
+.page__title::after {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 4px;
+    margin-top: 1rem;
+    background-color: var(--marigold);
+}
+
+.lead {
+    max-width: var(--measure);
+    margin-top: 1.5rem;
+    font-size: 1.15rem;
+    color: var(--stone);
+}
+
+.section {
+    margin-top: 3.5rem;
+}
+
+.section__title {
+    font-size: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
+    font-weight: 600;
+}
+
+/* ------------------------------------------------ 6. Home page */
+.hero {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+}
+
+.hero__headline {
+    font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+    font-weight: 600;
+}
+
+.hero__text .lead {
+    margin-top: 1rem;
+}
+
+.hero__logo {
+    width: 100%;
+    max-width: 26rem;
+    justify-self: start;
+}
+
+@media (min-width: 52em) {
+    .hero {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3rem;
+    }
+
+    .hero__logo {
+        justify-self: end;
+    }
+}
+
+.linklist {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.linklist__item {
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--line);
+}
+
+.linklist__item:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.linklist__link {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.linklist__note {
+    max-width: var(--measure);
+    margin-top: 0.25rem;
+    color: var(--stone);
+}
+
+/* --------------------------------- 7. Organizations directory */
+.directory {
+    list-style: none;
+    margin-top: 2.5rem;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0 1.5rem;
+}
+
+.directory__row {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.directory__row:first-child {
+    border-top: 0;
+}
+
+.directory__logo {
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.directory__name {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.directory__description {
+    max-width: var(--measure);
+    margin-top: 0.35rem;
+    color: var(--stone);
+}
+
+.directory__contact {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+@media (min-width: 40em) {
+    .directory {
+        padding-inline: 2rem;
+    }
+
+    .directory__row {
+        grid-template-columns: 5.5rem 1fr;
+        gap: 2rem;
+    }
+
+    .directory__logo {
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+}
+
+/* --------------------------------------------- 8. Projects list */
+.stack {
+    list-style: none;
+    margin-top: 2.5rem;
+}
+
+.stack__item {
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.stack__item:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.stack__name {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.stack__description {
+    max-width: var(--measure);
+    margin-top: 0.4rem;
+    color: var(--stone);
+}
+
+/* ------------------------------------------ 9. Categories grid */
+.grid {
+    list-style: none;
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1.25rem;
+}
+
+.grid__item {
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--fern);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.5rem;
+}
+
+.grid__name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.grid__description {
+    margin-top: 0.4rem;
+    color: var(--stone);
+}
+
+@media (min-width: 40em) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* --------------------------------------------------- 10. Footer */
+.site-footer {
+    background-color: var(--pine);
+    border-top: 3px solid var(--marigold);
+    color: var(--pine-soft);
+}
+
+.site-footer__inner {
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding: 2rem var(--gutter);
+}
+
+.site-footer :focus-visible {
+    outline-color: var(--marigold);
+}
+
+.site-footer__copyright {
+    color: var(--paper);
+    font-weight: 600;
+}
+
+.site-footer__note {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+}
+
+/* ---------------------------------------- 11. Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+<main id="main-content">
+    <div class="page">
+        <h1 class="page__title"><%= title %></h1>
+        <p class="lead">Upcoming service projects across the network. New opportunities are added as our partner organizations schedule them.</p>
+
+        <ul class="stack">
+            <% projects.forEach((project) => { %>
+                <li class="stack__item">
+                    <h2 class="stack__name"><%= project.name %></h2>
+                    <p class="stack__description"><%= project.description %></p>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

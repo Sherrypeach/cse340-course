@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<main id="main-content">
+    <div class="page">
+        <h1 class="page__title"><%= title %></h1>
+        <p class="lead">Here are a few of our partner organizations. Contact any of them directly to ask about their upcoming projects.</p>
+
+        <ul class="directory">
+            <% organizations.forEach((organization) => { %>
+                <li class="directory__row">
+                    <img class="directory__logo" src="<%= organization.logo %>" alt="<%= organization.name %> logo">
+                    <div class="directory__body">
+                        <h2 class="directory__name"><%= organization.name %></h2>
+                        <p class="directory__description"><%= organization.description %></p>
+                        <a class="directory__contact" href="mailto:<%= organization.email %>"><%= organization.email %></a>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

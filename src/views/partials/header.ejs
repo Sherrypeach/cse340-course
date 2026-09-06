@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> | CSE 340 Service Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="masthead">
+        <div class="masthead__inner">
+            <a class="wordmark" href="/">Service Network</a>
+
+            <nav class="site-nav" aria-label="Main">
+                <ul>
+                    <li>
+                        <a href="/" class="site-nav__link<% if (currentPath === '/') { %> site-nav__link--current<% } %>"<% if (currentPath === '/') { %> aria-current="page"<% } %>>Home</a>
+                    </li>
+                    <li>
+                        <a href="/organizations" class="site-nav__link<% if (currentPath === '/organizations') { %> site-nav__link--current<% } %>"<% if (currentPath === '/organizations') { %> aria-current="page"<% } %>>Organizations</a>
+                    </li>
+                    <li>
+                        <a href="/projects" class="site-nav__link<% if (currentPath === '/projects') { %> site-nav__link--current<% } %>"<% if (currentPath === '/projects') { %> aria-current="page"<% } %>>Projects</a>
+                    </li>
+                    <li>
+                        <a href="/categories" class="site-nav__link<% if (currentPath === '/categories') { %> site-nav__link--current<% } %>"<% if (currentPath === '/categories') { %> aria-current="page"<% } %>>Categories</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>

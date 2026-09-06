@@ -1,0 +1,28 @@
+{
+  "name": "cse340-course",
+  "version": "1.0.0",
+  "description": "CSE 340 Service Network - a site that connects volunteers with service opportunities in their community.",
+  "homepage": "https://github.com/Sherrypeach/cse340-course",
+  "bugs": {
+    "url": "https://github.com/Sherrypeach/cse340-course/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sherrypeach/cse340-course.git"
+  },
+  "license": "ISC",
+  "author": "Cassandra Perche",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
