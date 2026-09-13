@@ -8,11 +8,11 @@
         <ul class="directory">
             <% organizations.forEach((organization) => { %>
                 <li class="directory__row">
-                    <img class="directory__logo" src="<%= organization.logo %>" alt="<%= organization.name %> logo">
+                    <img class="directory__logo" src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
                     <div class="directory__body">
                         <h2 class="directory__name"><%= organization.name %></h2>
                         <p class="directory__description"><%= organization.description %></p>
-                        <a class="directory__contact" href="mailto:<%= organization.email %>"><%= organization.email %></a>
+                        <a class="directory__contact" href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
                     </div>
                 </li>
             <% }); %>

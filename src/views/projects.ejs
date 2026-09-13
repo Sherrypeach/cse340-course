@@ -3,13 +3,14 @@
 <main id="main-content">
     <div class="page">
         <h1 class="page__title"><%= title %></h1>
-        <p class="lead">Upcoming service projects across the network. New opportunities are added as our partner organizations schedule them.</p>
+        <p class="lead">Upcoming service projects across the network, listed with the organization that sponsors each one.</p>
 
         <ul class="stack">
             <% projects.forEach((project) => { %>
                 <li class="stack__item">
-                    <h2 class="stack__name"><%= project.name %></h2>
+                    <h2 class="stack__name"><%= project.project_date %>: <%= project.title %> (<%= project.organization_name %>)</h2>
                     <p class="stack__description"><%= project.description %></p>
+                    <p class="stack__meta"><%= project.location %></p>
                 </li>
             <% }); %>
         </ul>

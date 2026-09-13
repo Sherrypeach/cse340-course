@@ -389,6 +389,12 @@ main {
     color: var(--stone);
 }
 
+.stack__meta {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--fern);
+}
+
 /* ------------------------------------------ 9. Categories grid */
 .grid {
     list-style: none;
