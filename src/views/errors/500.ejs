@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<main id="main-content">
+    <div class="page">
+        <h1 class="page__title">Something Went Wrong</h1>
+        <p class="lead">We are experiencing technical difficulties. Our team has been notified and is working to fix the issue.</p>
+        <p>Return to the <a href="/">homepage</a> to continue browsing.</p>
+
+        <% if (NODE_ENV === 'development') { %>
+            <details class="debug" open>
+                <summary>Error Details (Development Only)</summary>
+                <pre><%= error %></pre>
+                <pre><%= stack %></pre>
+            </details>
+        <% } %>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

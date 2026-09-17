@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+
+<main id="main-content">
+    <div class="page">
+        <p class="crumb"><a href="/organizations">Partner organizations</a></p>
+
+        <h1 class="page__title"><%= organizationDetails.name %></h1>
+
+        <div class="detail">
+            <img class="detail__logo" src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo">
+            <div class="detail__body">
+                <p class="lead"><%= organizationDetails.description %></p>
+                <p class="detail__field">
+                    <span class="detail__label">Contact</span>
+                    <a href="mailto:<%= organizationDetails.contact_email %>"><%= organizationDetails.contact_email %></a>
+                </p>
+            </div>
+        </div>
+
+        <section class="section" aria-labelledby="org-projects">
+            <h2 class="section__title" id="org-projects">Service projects</h2>
+
+            <% if (projects.length > 0) { %>
+                <ul class="stack">
+                    <% projects.forEach((project) => { %>
+                        <li class="stack__item">
+                            <h3 class="stack__name">
+                                <a href="/project/<%= project.project_id %>"><%= project.title %></a>
+                            </h3>
+                            <p class="stack__meta"><%= project.project_date %> &mdash; <%= project.location %></p>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p class="empty">This organization has no service projects scheduled right now.</p>
+            <% } %>
+        </section>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

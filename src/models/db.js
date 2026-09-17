@@ -19,6 +19,19 @@ const pool = new Pool({
 });
 
 /**
+ * Common SSL Issue:
+ *
+ * You may encounter SSL connection errors depending on your operating system, Node.js
+ * version, or PostgreSQL server settings. If you have confirmed your credentials are
+ * correct but still see SSL errors, try updating the 'ssl' property in the Pool
+ * configuration above to:
+ *
+ * ssl: {
+ *     rejectUnauthorized: false
+ * }
+ */
+
+/**
  * Since we will modify the normal pool object in development mode, we need to create and
  * export a reference to the pool object. This allows us to use the same name for the
  * export regardless of whether we are in development or production mode.

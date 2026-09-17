@@ -58,12 +58,21 @@ categories and a category can hold many projects (many-to-many), which is why
 
 ## Pages
 
-| Route            | View                | Title variable              |
-| ---------------- | ------------------- | --------------------------- |
-| `/`              | `home.ejs`          | Home                        |
-| `/organizations` | `organizations.ejs` | Our Partner Organizations   |
-| `/projects`      | `projects.ejs`      | Service Projects            |
-| `/categories`    | `categories.ejs`    | Service Project Categories  |
+| Route                | Controller function            | View                |
+| -------------------- | ------------------------------ | ------------------- |
+| `/`                  | `showHomePage`                 | `home.ejs`          |
+| `/organizations`     | `showOrganizationsPage`        | `organizations.ejs` |
+| `/organization/:id`  | `showOrganizationDetailsPage`  | `organization.ejs`  |
+| `/projects`          | `showProjectsPage`             | `projects.ejs`      |
+| `/project/:id`       | `showProjectDetailsPage`       | `project.ejs`       |
+| `/categories`        | `showCategoriesPage`           | `categories.ejs`    |
+| `/category/:id`      | `showCategoryDetailsPage`      | `category.ejs`      |
+| `/test-error`        | `testErrorPage`                | `errors/500.ejs`    |
+
+Any URL that matches no route falls through to the catch-all middleware in
+`server.js`, which creates a 404 error and hands it to the global error
+handler. A detail route whose id matches no record does the same thing, so a
+missing organization returns 404 rather than crashing the page.
 
 ## Project structure
 
@@ -74,17 +83,28 @@ categories and a category can hold many projects (many-to-many), which is why
 │   └── images/
 ├── src/
 │   ├── setup.sql      Re-creates the database and its sample data
+│   ├── routes.js      Every route, mapped to a controller function
 │   ├── models/        All database access lives here
 │   │   ├── db.js              Connection pool and testConnection
-│   │   ├── organizations.js   getAllOrganizations
-│   │   ├── projects.js        getAllProjects (joins organization)
-│   │   └── categories.js      getAllCategories
-│   └── views/         EJS templates, rendered through routes
+│   │   ├── organizations.js   getAllOrganizations, getOrganizationDetails
+│   │   ├── projects.js        getAllProjects, getUpcomingProjects,
+│   │   │                      getProjectDetails, getProjectsByOrganizationId,
+│   │   │                      getProjectsByCategoryId
+│   │   └── categories.js      getAllCategories, getCategoryDetails,
+│   │                          getCategoriesByProjectId
+│   ├── controllers/   Coordination only — no database code
+│   │   ├── index.js           showHomePage
+│   │   ├── organizations.js   showOrganizationsPage, showOrganizationDetailsPage
+│   │   ├── projects.js        showProjectsPage, showProjectDetailsPage
+│   │   ├── categories.js      showCategoriesPage, showCategoryDetailsPage
+│   │   └── errors.js          testErrorPage
+│   └── views/         EJS templates, rendered through controllers
 │       ├── partials/  header.ejs and footer.ejs, used by every page
+│       ├── errors/    404.ejs and 500.ejs
 │       ├── home.ejs
-│       ├── organizations.ejs
-│       ├── projects.ejs
-│       └── categories.ejs
+│       ├── organizations.ejs   organization.ejs
+│       ├── projects.ejs        project.ejs
+│       └── categories.ejs      category.ejs
 ├── nodemon.json
 ├── package.json
 └── server.js
@@ -103,8 +123,10 @@ before a page is sent.
 - Arrow functions for all route handlers and middleware
 - `async` / `await` rather than promises or callbacks
 - `<%= %>` for all data in templates; `<%- %>` only for including partials
-- All database queries live in `src/models/`, never in `server.js`
+- MVC: models hold all database code, controllers hold no database code, views only display
+- Routes live in `src/routes.js`, not in `server.js`
 - Queries name their columns explicitly instead of using `SELECT *`
+- User input in SQL always goes through parameterized queries (`$1`), never string concatenation
 
 ## Deployment
 

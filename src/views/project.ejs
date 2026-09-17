@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<main id="main-content">
+    <div class="page">
+        <p class="crumb"><a href="/projects">Upcoming service projects</a></p>
+
+        <h1 class="page__title"><%= projectDetails.title %></h1>
+
+        <p class="lead"><%= projectDetails.description %></p>
+
+        <dl class="facts">
+            <dt class="facts__label">Date</dt>
+            <dd class="facts__value"><%= projectDetails.project_date %></dd>
+
+            <dt class="facts__label">Location</dt>
+            <dd class="facts__value"><%= projectDetails.location %></dd>
+
+            <dt class="facts__label">Sponsored by</dt>
+            <dd class="facts__value">
+                <a href="/organization/<%= projectDetails.organization_id %>"><%= projectDetails.organization_name %></a>
+            </dd>
+        </dl>
+
+        <section class="section" aria-labelledby="project-categories">
+            <h2 class="section__title" id="project-categories">Categories</h2>
+
+            <% if (categories.length > 0) { %>
+                <ul class="tags">
+                    <% categories.forEach((category) => { %>
+                        <li class="tags__item">
+                            <a class="tag" href="/category/<%= category.category_id %>"><%= category.name %></a>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p class="empty">This project has not been placed in a category yet.</p>
+            <% } %>
+        </section>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

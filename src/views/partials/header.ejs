@@ -22,13 +22,13 @@
                         <a href="/" class="site-nav__link<% if (currentPath === '/') { %> site-nav__link--current<% } %>"<% if (currentPath === '/') { %> aria-current="page"<% } %>>Home</a>
                     </li>
                     <li>
-                        <a href="/organizations" class="site-nav__link<% if (currentPath === '/organizations') { %> site-nav__link--current<% } %>"<% if (currentPath === '/organizations') { %> aria-current="page"<% } %>>Organizations</a>
+                        <a href="/organizations" class="site-nav__link<% if (currentPath.startsWith('/organization')) { %> site-nav__link--current<% } %>"<% if (currentPath === '/organizations') { %> aria-current="page"<% } %>>Organizations</a>
                     </li>
                     <li>
-                        <a href="/projects" class="site-nav__link<% if (currentPath === '/projects') { %> site-nav__link--current<% } %>"<% if (currentPath === '/projects') { %> aria-current="page"<% } %>>Projects</a>
+                        <a href="/projects" class="site-nav__link<% if (currentPath.startsWith('/project')) { %> site-nav__link--current<% } %>"<% if (currentPath === '/projects') { %> aria-current="page"<% } %>>Projects</a>
                     </li>
                     <li>
-                        <a href="/categories" class="site-nav__link<% if (currentPath === '/categories') { %> site-nav__link--current<% } %>"<% if (currentPath === '/categories') { %> aria-current="page"<% } %>>Categories</a>
+                        <a href="/categories" class="site-nav__link<% if (currentPath.startsWith('/categor')) { %> site-nav__link--current<% } %>"<% if (currentPath === '/categories') { %> aria-current="page"<% } %>>Categories</a>
                     </li>
                 </ul>
             </nav>

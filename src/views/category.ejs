@@ -2,26 +2,28 @@
 
 <main id="main-content">
     <div class="page">
-        <h1 class="page__title"><%= title %></h1>
-        <p class="lead">The next five opportunities across the network. Choose a project to see the full details.</p>
+        <p class="crumb"><a href="/categories">Service project categories</a></p>
+
+        <h1 class="page__title"><%= categoryDetails.name %></h1>
+        <p class="lead">Service projects in this category.</p>
 
         <% if (projects.length > 0) { %>
             <ul class="stack">
                 <% projects.forEach((project) => { %>
                     <li class="stack__item">
                         <h2 class="stack__name">
-                            <a href="/project/<%= project.project_id %>"><%= project.project_date %>: <%= project.title %></a>
+                            <a href="/project/<%= project.project_id %>"><%= project.title %></a>
                         </h2>
                         <p class="stack__description"><%= project.description %></p>
                         <p class="stack__meta">
+                            <%= project.project_date %> &mdash;
                             <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
-                            &mdash; <%= project.location %>
                         </p>
                     </li>
                 <% }); %>
             </ul>
         <% } else { %>
-            <p class="empty">There are no upcoming service projects scheduled right now.</p>
+            <p class="empty">There are no service projects in this category yet.</p>
         <% } %>
     </div>
 </main>

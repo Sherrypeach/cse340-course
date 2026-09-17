@@ -334,6 +334,20 @@ main {
     font-weight: 600;
 }
 
+.directory__name a,
+.stack__name a,
+.grid__name a {
+    color: inherit;
+    text-decoration-color: var(--marigold);
+    text-decoration-thickness: 2px;
+}
+
+.directory__name a:hover,
+.stack__name a:hover,
+.grid__name a:hover {
+    color: var(--fern);
+}
+
 .directory__description {
     max-width: var(--measure);
     margin-top: 0.35rem;
@@ -455,7 +469,135 @@ main {
     font-size: 0.95rem;
 }
 
-/* ---------------------------------------- 11. Motion preferences */
+/* ------------------------------ 11. Detail pages, tags, errors */
+
+/* A quiet link back to the list this record came from */
+.crumb {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.detail {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.detail__logo {
+    width: 7rem;
+    height: 7rem;
+}
+
+.detail__body .lead {
+    margin-top: 0;
+}
+
+.detail__field {
+    margin-top: 1rem;
+}
+
+.detail__label {
+    display: inline-block;
+    min-width: 5rem;
+    color: var(--stone);
+}
+
+@media (min-width: 40em) {
+    .detail {
+        grid-template-columns: 7rem 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Key facts on the project details page */
+.facts {
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 0.25rem 1.5rem;
+    max-width: var(--measure);
+}
+
+.facts__label {
+    color: var(--stone);
+    font-weight: 600;
+}
+
+.facts__value {
+    margin: 0 0 0.9rem;
+}
+
+@media (min-width: 34em) {
+    .facts {
+        grid-template-columns: 9rem 1fr;
+    }
+
+    .facts__label {
+        grid-column: 1;
+    }
+
+    .facts__value {
+        grid-column: 2;
+    }
+}
+
+/* Category tags */
+.tags {
+    list-style: none;
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--marigold);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: var(--pine);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 120ms ease, color 120ms ease;
+}
+
+.tag:hover {
+    border-color: var(--fern);
+    border-left-color: var(--marigold);
+    color: var(--fern);
+}
+
+.empty {
+    margin-top: 1.25rem;
+    color: var(--stone);
+    font-style: italic;
+}
+
+/* Error detail block, shown in development only */
+.debug {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.debug summary {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.debug pre {
+    margin-top: 0.75rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: var(--stone);
+}
+
+/* ---------------------------------------- 12. Motion preferences */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

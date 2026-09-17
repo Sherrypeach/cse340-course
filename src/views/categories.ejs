@@ -3,12 +3,14 @@
 <main id="main-content">
     <div class="page">
         <h1 class="page__title"><%= title %></h1>
-        <p class="lead">Every project on the network belongs to one or more of these categories. Pick the kind of work that fits you best.</p>
+        <p class="lead">Every project on the network belongs to one or more of these categories. Choose the kind of work that fits you best.</p>
 
         <ul class="grid">
             <% categories.forEach((category) => { %>
                 <li class="grid__item">
-                    <h2 class="grid__name"><%= category.name %></h2>
+                    <h2 class="grid__name">
+                        <a href="/category/<%= category.category_id %>"><%= category.name %></a>
+                    </h2>
                 </li>
             <% }); %>
         </ul>
